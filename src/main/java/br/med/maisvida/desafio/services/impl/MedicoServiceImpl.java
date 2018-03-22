@@ -16,6 +16,9 @@ public class MedicoServiceImpl implements MedicoService {
     @Autowired
     private MedicoRepository repository;
 
+    @Autowired
+    private NextSequenceService nextSequenceService;
+
     @Override
     public Medico find(Long id) {
         Optional<Medico> obj = repository.findById(id);
@@ -30,6 +33,8 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     public Medico add(Medico m) {
+        Long id = new Long(nextSequenceService.getNextSequence("customSequences"));
+        m.setId(id);
         return repository.save(m);
     }
 
