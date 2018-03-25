@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface MedicoService {
 
-    Medico find(Long id);
+    Medico find(String id);
     List<Medico> findAll();
     Medico add(Medico m);
     Medico update(Medico m);
-    void delete(Long id);
+    void delete(String id);
 }

@@ -16,11 +16,8 @@ public class MedicoServiceImpl implements MedicoService {
     @Autowired
     private MedicoRepository repository;
 
-    @Autowired
-    private NextSequenceService nextSequenceService;
-
     @Override
-    public Medico find(Long id) {
+    public Medico find(String id) {
         Optional<Medico> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Objeto não encontrato ! Id: " + id + ", Tipo: " + Medico.class.getName()));
@@ -33,8 +30,6 @@ public class MedicoServiceImpl implements MedicoService {
 
     @Override
     public Medico add(Medico m) {
-        Long id = new Long(nextSequenceService.getNextSequence("customSequences"));
-        m.setId(id);
         return repository.save(m);
     }
 
@@ -56,7 +51,7 @@ public class MedicoServiceImpl implements MedicoService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(String id) {
         if (!repository.existsById(id)) {
             throw new ObjectNotFoundException(
                     "Objeto não encontrato ! Id: " + id + ", Tipo: " + Medico.class.getName());

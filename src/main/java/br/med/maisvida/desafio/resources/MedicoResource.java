@@ -30,13 +30,13 @@ public class MedicoResource {
         return ResponseEntity.ok().body(medicos);
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Recupera o médico cadastrado pelo Id.")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "Identificador único do médico que será consultado.",
                     required = true, dataType = "integer", paramType = "path")})
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Consulta efetuada com sucesso.") })
-    public ResponseEntity<?> getMedico(@PathVariable("id") Long id) {
+    public ResponseEntity<?> getMedico(@PathVariable("id") String id) {
         Medico medico = medicoService.find(id);
         return ResponseEntity.ok().body(medico);
     }
@@ -50,26 +50,26 @@ public class MedicoResource {
         return ResponseEntity.ok().body(medicoRetorno);
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "Alterar médico", notes = "Altera os dados de um médico previamente"
             + " cadastrado.")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "Identificador único do médico que será alterado.",
                     required = true, dataType = "integer", paramType = "path")})
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Alteração efetuada com sucesso.") })
-    public ResponseEntity<?> atualizarMedico(@PathVariable("id") Long id, Medico medico) {
+    public ResponseEntity<?> atualizarMedico(@PathVariable("id") String id, Medico medico) {
         medico.setId(id);
         Medico medicoRetorno = medicoService.update(medico);
         return ResponseEntity.ok().body(medicoRetorno);
     }
 
-    @RequestMapping(value = "/{id:\\d+}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ApiOperation(value = "Excluir médico", notes = "Efetua a exclusão de um determinado médico.")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "Identificador único do médico que será excluído.",
                     required = true, dataType = "integer", paramType = "path") })
     @ApiResponses(value = { @ApiResponse(code = 204, message = "Exclusão efetuada com sucesso") })
-    public ResponseEntity<?> deleteMedico(@PathVariable("id") Long id) {
+    public ResponseEntity<?> deleteMedico(@PathVariable("id") String id) {
         Medico medico = medicoService.find(id);
         if (medico == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
