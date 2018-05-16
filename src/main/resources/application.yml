@@ -1,35 +1,32 @@
-#spring:
-#  application:
-#    name: Desafio Mais Vida
-#  profiles: default
-#applicationProperties:
-#  cors:
-#      allowed-origins: '*'
-#      allowed-methods: GET, PUT, POST, DELETE, OPTIONS
-#      allowed-headers: Authorization, Content-Type
-#      exposed-headers: X-Total-Count, X-Validation-Error, msgErro
-#      max-age: 1800
-#  swagger:
-#    title: Sistema Desafio Mais Vida
-#    description: API para efetuar consultas de médico
-#    version: 1.0.0
-#    termsOfServiceUrl: null
-#    contact: thiagobf.barbosa@gmail.com
-#    license: null
-#    licenseUrl: null
-#  springfox:
-#    documentation:
-#      swagger:
-#        v2:
-#          path: /api-docs
-#authorization:
-#  timeout:
-#    refreshToken: 36000
-#    token: 34800
-#
-#----------------------
-##spring:
-##  profiles: wildfly
-##
-##  datasource:
-##      jndi-name: java/MVDS
+spring:
+  application:
+    name: Desafio Mais Vida
+  profiles: default
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: maisvidadb
+  security:
+    filter:
+      order: 3
+applicationProperties:
+  cors:
+      allowed-origins: '*'
+      allowed-methods: GET, PUT, POST, DELETE, OPTIONS
+      allowed-headers: Authorization, Content-Type
+      exposed-headers: X-Total-Count, X-Validation-Error, msgErro
+      max-age: 1800
+  swagger:
+    title: Sistema Desafio Mais Vida
+    description: API para efetuar consultas de médico
+    version: 1.0.0
+    termsOfServiceUrl: null
+    contact: thiagobf.barbosa@gmail.com
+    license: null
+    licenseUrl: null
+  springfox:
+    documentation:
+      swagger:
+        v2:
+          path: /api-docs

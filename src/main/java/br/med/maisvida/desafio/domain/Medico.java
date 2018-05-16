@@ -3,9 +3,11 @@ package br.med.maisvida.desafio.domain;
 import br.med.maisvida.desafio.domain.enums.StatusMedicoEnum;
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
+@Document
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,5 +1,6 @@
 package br.med.maisvida.desafio.services.impl;
 
+import br.med.maisvida.desafio.domain.Usuario;
 import br.med.maisvida.desafio.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,10 @@ public class UsuarioService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return usuarioRepository.findByUsername(username);
+        Usuario usuario = usuarioRepository.findByUsername(username);
+        if (usuario == null) {
+            throw new UsernameNotFoundException(String.format("Usuário não existe!", username));
+        }
+        return usuario;
     }
 }
