@@ -49,7 +49,7 @@ public class OAuth2ServerConfiguration {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .and().authorizeRequests()
-                .antMatchers("/perfil/**").hasAnyRole("ADMIN, USUARIO")
+                .antMatchers("/perfis/**").hasAnyRole("ADMIN, USUARIO")
                 .antMatchers("/usuario/**").hasAnyRole("ADMIN, USUARIO")
                 .antMatchers("/medicos/**").hasAnyRole("ADMIN, USUARIO")
                 .anyRequest().denyAll()
